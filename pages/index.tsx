@@ -1,7 +1,8 @@
 import { Sidebar } from './../components/Sidebar';
 import type { NextPage } from 'next'
-import {  useState } from 'react'
+import { useState } from 'react'
 import useSWR from 'swr'
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
 const fetcher = async (
   input: RequestInfo,
@@ -22,6 +23,17 @@ const Home: NextPage = () => {
     setActive(item.target.innerText)
   }
 
+  const Dropdown = () => (
+    <DropdownMenuPrimitive.Root>
+      <DropdownMenuPrimitive.Trigger className="bg-red-50 radix-state-open:border-2">
+        Trigger
+      </DropdownMenuPrimitive.Trigger>
+      <DropdownMenuPrimitive.Content>
+        <DropdownMenuPrimitive.Item>Item</DropdownMenuPrimitive.Item>
+      </DropdownMenuPrimitive.Content>
+    </DropdownMenuPrimitive.Root>
+  )
+
 
   return (
     <>
@@ -37,6 +49,7 @@ const Home: NextPage = () => {
             <div>
               <video controls src={`.\\${data[active].svg}`}></video>
             </div>
+            <Dropdown />
           </main>
         </div>
         : ''}
