@@ -29,26 +29,32 @@ interface ButtonProps {
 export const Button = ({
   primary = false,
   size = "medium",
-  backgroundColor,
   label,
   ...props
 }: ButtonProps) => {
   const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
+    ? "bg-blue-400"
+    : "";
+
+  const sizeClass = () => {
+    switch (size) {
+      case "small":
+        return "text-sm";
+      case "large":
+        return "text-4xl";
+      default:
+        return "";
+    }
+  }
+  
   return (
     <button
-      type="button"
-      className={[
-        "storybook-button",
-        `storybook-button--${size}`,
-        "bg-red-50",
-        mode,
-      ].join(" ")}
-      style={{ backgroundColor }}
+      className={`storybook-button ${mode} ${sizeClass()}`}
       {...props}
     >
       {label}
     </button>
+
+
   );
 };
